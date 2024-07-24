@@ -1,6 +1,10 @@
+Claro! Aqui está o `README.md` com as expressões matemáticas formatadas usando LaTeX:
+
+---
+
 # Rede Neural MNIST do Zero
 
-Este projeto implementa uma rede neural simples do zero para classificar o conjunto de dados MNIST usando apenas NumPy e muita matemática. A rede é treinada usando gradiente descendente e avaliada em um conjunto de testes.
+Este projeto implementa uma rede neural simples do zero para classificar o conjunto de dados MNIST usando NumPy. A rede é treinada usando gradiente descendente e avaliada em um conjunto de testes. Este README explica o pré-processamento de dados, a arquitetura da rede neural, a propagação para frente e para trás, e a atualização dos parâmetros.
 
 ## Índice
 
@@ -61,19 +65,35 @@ A rede neural consiste em:
 
 1. **Camada Oculta**:
 
-   - ![Z1 = W1 \cdot X + b1](https://latex.codecogs.com/gif.latex?Z1=W1\cdot%20X+b1)
-   - ![A1 = \text{ReLU}(Z1)](<https://latex.codecogs.com/gif.latex?A1=\text{ReLU}(Z1)>)
+   - Quando $W1 \ne 0$, a equação é:
+     $$
+     Z1 = W1 \cdot X + b1
+     $$
+   - A ativação é:
+     $$
+     A1 = \text{ReLU}(Z1)
+     $$
 
 2. **Camada de Saída**:
-   - ![Z2 = W2 \cdot A1 + b2](https://latex.codecogs.com/gif.latex?Z2=W2\cdot%20A1+b2)
-   - ![A2 = \text{softmax}(Z2)](<https://latex.codecogs.com/gif.latex?A2=\text{softmax}(Z2)>)
+   - Quando $W2 \ne 0$, a equação é:
+     $$
+     Z2 = W2 \cdot A1 + b2
+     $$
+   - A ativação é:
+     $$
+     A2 = \text{softmax}(Z2)
+     $$
 
 ### Funções de Ativação:
 
 - **ReLU (Rectified Linear Unit)**:
-  - ![\text{ReLU}(z) = \max(0, z)](<https://latex.codecogs.com/gif.latex?\text{ReLU}(z)=\max(0,z)>)
+  - $$
+    \text{ReLU}(z) = \max(0, z)
+    $$
 - **Softmax**:
-  - ![\text{softmax}(z) = \frac{\exp(z)}{\sum \exp(z)}](<https://latex.codecogs.com/gif.latex?\text{softmax}(z)=\frac{\exp(z)}{\sum\exp(z)}>)
+  - $$
+    \text{softmax}(z) = \frac{\exp(z)}{\sum \exp(z)}
+    $$
 
 ## Propagação para Trás
 
@@ -81,29 +101,61 @@ A rede neural consiste em:
 
 1. **Camada de Saída**:
 
-   - ![dZ2 = A2 - Y_{\text{one-hot}}](https://latex.codecogs.com/gif.latex?dZ2=A2-Y_{\text{one-hot}})
-   - ![dW2 = \frac{1}{m} dZ2 \cdot A1^T](https://latex.codecogs.com/gif.latex?dW2=\frac{1}{m}dZ2\cdot%20A1^T)
-   - ![db2 = \frac{1}{m} \sum dZ2](https://latex.codecogs.com/gif.latex?db2=\frac{1}{m}\sum%20dZ2)
+   - O gradiente é:
+     $$
+     dZ2 = A2 - Y_{\text{one-hot}}
+     $$
+   - A derivada do peso é:
+     $$
+     dW2 = \frac{1}{m} dZ2 \cdot A1^T
+     $$
+   - A derivada do viés é:
+     $$
+     db2 = \frac{1}{m} \sum dZ2
+     $$
 
 2. **Camada Oculta**:
-   - ![dZ1 = W2^T \cdot dZ2 \cdot \text{ReLU}'(Z1)](<https://latex.codecogs.com/gif.latex?dZ1=W2^T\cdot%20dZ2\cdot\text{ReLU}'(Z1)>)
-   - ![dW1 = \frac{1}{m} dZ1 \cdot X^T](https://latex.codecogs.com/gif.latex?dW1=\frac{1}{m}dZ1\cdot%20X^T)
-   - ![db1 = \frac{1}{m} \sum dZ1](https://latex.codecogs.com/gif.latex?db1=\frac{1}{m}\sum%20dZ1)
+   - O gradiente é:
+     $$
+     dZ1 = W2^T \cdot dZ2 \cdot \text{ReLU}'(Z1)
+     $$
+   - A derivada do peso é:
+     $$
+     dW1 = \frac{1}{m} dZ1 \cdot X^T
+     $$
+   - A derivada do viés é:
+     $$
+     db1 = \frac{1}{m} \sum dZ1
+     $$
 
 ### Funções de Gradiente:
 
 - **Derivada da ReLU**:
-  - ![\text{ReLU}'(z) = 1 \text{ se } z > 0 \text{ senão } 0](<https://latex.codecogs.com/gif.latex?\text{ReLU}'(z)=1\text{se}z>0\text{senão}0>)
+  - $$
+    \text{ReLU}'(z) = 1 \text{ se } z > 0 \text{ senão } 0
+    $$
 
 ## Atualização de Parâmetros
 
 ### Gradiente Descendente:
 
 - Atualize os parâmetros usando os gradientes calculados durante a propagação para trás:
-  - ![W1 = W1 - \alpha \cdot dW1](https://latex.codecogs.com/gif.latex?W1=W1-\alpha\cdot%20dW1)
-  - ![b1 = b1 - \alpha \cdot db1](https://latex.codecogs.com/gif.latex?b1=b1-\alpha\cdot%20db1)
-  - ![W2 = W2 - \alpha \cdot dW2](https://latex.codecogs.com/gif.latex?W2=W2-\alpha\cdot%20dW2)
-  - ![b2 = b2 - \alpha \cdot db2](https://latex.codecogs.com/gif.latex?b2=b2-\alpha\cdot%20db2)
+  - W1:
+    $$
+    W1 = W1 - \alpha \cdot dW1
+    $$
+  - b1
+    $$
+    b1 = b1 - \alpha \cdot db1
+    $$
+  - W2
+    $$
+    W2 = W2 - \alpha \cdot dW2
+    $$
+  - db1
+    $$
+    b2 = b2 - \alpha \cdot db2
+    $$
 
 ## Treinamento e Avaliação
 
@@ -121,3 +173,7 @@ Para executar o código, siga estes passos:
 
 1. **Certifique-se de que você tem os arquivos do conjunto de dados MNIST** (`train-images.idx3-ubyte`, `train-labels.idx1-ubyte`, `t10k-images.idx3-ubyte`, `t10k-labels.idx1-ubyte`).
 2. **Execute o script** substituindo `filename` pelo caminho dos seus arquivos.
+
+---
+
+Este README fornece uma visão geral abrangente do código, incluindo explicações dos cálculos da rede neural e instruções para executar o código.

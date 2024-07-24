@@ -61,19 +61,19 @@ A rede neural consiste em:
 
 1. **Camada Oculta**:
 
-   - Quando \( W1 \ne 0 \), a equação é: \( Z1 = W1 \cdot X + b1 \)
-   - A ativação é: \( A1 = \text{ReLU}(Z1) \)
+   - Quando $W1 \ne 0$, a equação é: $Z1 = W1 \cdot X + b1$
+   - A ativação é: $A1 = \text{ReLU}(Z1)$
 
 2. **Camada de Saída**:
-   - Quando \( W2 \ne 0 \), a equação é: \( Z2 = W2 \cdot A1 + b2 \)
-   - A ativação é: \( A2 = \text{softmax}(Z2) \)
+   - Quando $W2 \ne 0$, a equação é: $Z2 = W2 \cdot A1 + b2$
+   - A ativação é: $A2 = \text{softmax}(Z2)$
 
 ### Funções de Ativação:
 
 - **ReLU (Rectified Linear Unit)**:
-  - \( \text{ReLU}(z) = \max(0, z) \)
+  - $\text{ReLU}(z) = \max(0, z)$
 - **Softmax**:
-  - \( \text{softmax}(z) = \frac{\exp(z)}{\sum \exp(z)} \)
+  - $\text{softmax}(z) = \frac{\exp(z)}{\sum \exp(z)}$
 
 ## Propagação para Trás
 
@@ -81,29 +81,29 @@ A rede neural consiste em:
 
 1. **Camada de Saída**:
 
-   - O gradiente é: \( dZ2 = A2 - Y\_{\text{one-hot}} \)
-   - A derivada do peso é: \( dW2 = \frac{1}{m} dZ2 \cdot A1^T \)
-   - A derivada do viés é: \( db2 = \frac{1}{m} \sum dZ2 \)
+   - O gradiente é: $dZ2 = A2 - Y_{\text{one-hot}}$
+   - A derivada do peso é: $dW2 = \frac{1}{m} dZ2 \cdot A1^T$
+   - A derivada do viés é: $db2 = \frac{1}{m} \sum dZ2$
 
 2. **Camada Oculta**:
-   - O gradiente é: \( dZ1 = W2^T \cdot dZ2 \cdot \text{ReLU}'(Z1) \)
-   - A derivada do peso é: \( dW1 = \frac{1}{m} dZ1 \cdot X^T \)
-   - A derivada do viés é: \( db1 = \frac{1}{m} \sum dZ1 \)
+   - O gradiente é: $dZ1 = W2^T \cdot dZ2 \cdot \text{ReLU}'(Z1)$
+   - A derivada do peso é: $dW1 = \frac{1}{m} dZ1 \cdot X^T$
+   - A derivada do viés é: $db1 = \frac{1}{m} \sum dZ1$
 
 ### Funções de Gradiente:
 
 - **Derivada da ReLU**:
-  - \( \text{ReLU}'(z) = 1 \text{ se } z > 0 \text{ senão } 0 \)
+  - $\text{ReLU}'(z) = 1 \text{ se } z > 0 \text{ senão } 0$
 
 ## Atualização de Parâmetros
 
 ### Gradiente Descendente:
 
 - Atualize os parâmetros usando os gradientes calculados durante a propagação para trás:
-  - \( W1 = W1 - \alpha \cdot dW1 \)
-  - \( b1 = b1 - \alpha \cdot db1 \)
-  - \( W2 = W2 - \alpha \cdot dW2 \)
-  - \( b2 = b2 - \alpha \cdot db2 \)
+  - $W1 = W1 - \alpha \cdot dW1$
+  - $b1 = b1 - \alpha \cdot db1$
+  - $W2 = W2 - \alpha \cdot dW2$
+  - $b2 = b2 - \alpha \cdot db2$
 
 ## Treinamento e Avaliação
 
